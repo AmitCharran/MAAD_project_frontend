@@ -13,8 +13,7 @@ import { MessagesComponent } from './messages/messages.component';
   declarations: [
     AppComponent,
     AllSalesComponent,
-    MessagesComponent
-    AppComponent,
+    MessagesComponent,
     VehicleListComponent,
     CreateVehicleComponent
   ],
