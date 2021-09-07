@@ -1,5 +1,5 @@
 import { Time } from "@angular/common";
-import { Vehicle } from "./vehicle";
+import { Vehicle } from "./models/vehicle";
 
 export interface Sale {
     id: number;
