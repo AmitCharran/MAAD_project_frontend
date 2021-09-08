@@ -17,6 +17,10 @@ export class UserService {
 
   constructor(private http : HttpClient) { }
 
+  /**
+   * Gets all the available users.
+   * @returns an Observable of an array of all the current users
+   */
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersApiUrl)
       .pipe(
@@ -24,6 +28,11 @@ export class UserService {
       );
   }
 
+  /**
+   * Gets a single User by their user_id.
+   * @param id the id of the User to be retrieved
+   * @returns an Observable of the User
+   */
   getUserById(id : number) : Observable<User>{
     const url = `${this.usersApiUrl}/${id}`;
     return this.http.get<User>(url).pipe(
@@ -31,6 +40,11 @@ export class UserService {
     );
   }
 
+  /**
+   * Gets a single User by their username.
+   * @param username the username of the User to be retrieved
+   * @returns an Observable of the User
+   */
   getUserByUsername(username : String) : Observable<User>{
     const url = `${this.usersApiUrl}/${username}`;
     return this.http.get<User>(url).pipe(
@@ -38,18 +52,33 @@ export class UserService {
     );
   }
 
+  /**
+   * Creates a new User.
+   * @param user new User to be persisted to the database
+   * @returns an Observable of the newly created user
+   */
   createUser(user : User) : Observable<User>{
     return this.http.post<User>(this.usersApiUrl, user, this.httpOptions).pipe(
       catchError(this.handleError<User>('createUser'))
     );
   }
 
+  /**
+   * Updates a user with new information.
+   * @param user User object with new values
+   * @returns an Observable of the User with the new values
+   */
   updateUser(user : User) : Observable<any>{
     return this.http.put(this.usersApiUrl, user).pipe(
       catchError(this.handleError<any>('updateUser'))
     );
   }
 
+  /**
+   * Delete a current user from the database.
+   * @param id id of the User to be deleted
+   * @returns an Observable of type User that is not used
+   */
   deleteUser(id : number) : Observable<User>{
     const url = `${this.usersApiUrl}/${id}`;
 
@@ -58,6 +87,11 @@ export class UserService {
     );
   }
 
+  /**
+   * Method to login a user.
+   * @param user the user that is logging in
+   * @returns an Observable with the logged in user's ID
+   */
   loginUser(user : User) : Observable<User>{
     const url = this.usersApiUrl + "/login";
     return this.http.post<User>(url, user, this.httpOptions).pipe(
