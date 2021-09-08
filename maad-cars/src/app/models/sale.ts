@@ -3,6 +3,6 @@ import { Vehicle } from "./vehicle";
 
 export interface sale{
     sale_id: number;
-    vehicle: Vehicle;
+    vehicle_id: Vehicle;
     time_started: Time;
 }
