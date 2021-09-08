@@ -9,6 +9,8 @@ import { CreateVehicleComponent } from './components/create-vehicle/create-vehic
 import { AllSalesComponent } from './components/all-sales/all-sales.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
+import { MySalesComponent } from './components/my-sales/my-sales.component';
+import { BidsOnCarComponent } from './components/bids-on-car/bids-on-car.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { SaleDetailComponent } from './components/sale-detail/sale-detail.compon
     MessagesComponent,
     SaleDetailComponent,
     VehicleListComponent,
-    CreateVehicleComponent
+    CreateVehicleComponent,
+    MySalesComponent,
+    BidsOnCarComponent
   ],
   imports: [
     HttpClientModule,

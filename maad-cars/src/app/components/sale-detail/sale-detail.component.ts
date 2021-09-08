@@ -4,8 +4,8 @@ import { Location } from '@angular/common';
 
 import { Sale } from '../../models/sale';
 import { SaleService } from '../../services/sale.service';
-import { Bid } from '../bid';
-import { BidService } from '../bid.service';
+import { Bid } from '../../models/bid';
+import { BidService } from '../../services/bid.service';
 import { Vehicle } from '../../models/vehicle';
 
 @Component({
@@ -18,6 +18,7 @@ export class SaleDetailComponent implements OnInit {
   sale: Sale | undefined;
   vehicle: Vehicle | undefined;
   bids: Bid[] = [];
+  bid: Bid | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class SaleDetailComponent implements OnInit {
     this.saleService.getSale(id)
       .subscribe(sale => this.sale = sale);
     this.vehicle = this.sale?.vehicle_id;
-    this.bidService.getBid()
+    this.bidService.getBids()
       .subscribe(bids => this.bids = bids);
   }
 
@@ -45,7 +46,7 @@ export class SaleDetailComponent implements OnInit {
 
   makeBid(): void {
     if (this.sale) {
-      this.bidService.addBid(this.bids)
+      this.bidService.addBid(this.bid)
         .subscribe(() => this.goBack());
     }
   }
