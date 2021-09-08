@@ -5,13 +5,13 @@ import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import * as global from '../global';
-
+import { MessageService } from '../services/message.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleService {
-  private vehiclesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/vehicles';
+  private vehiclesUrl = `${global.servlet_url}/vehicles`;
   private vehicles: Vehicle[] = [];
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,7 +20,9 @@ export class VehicleService {
     })
   };
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private messageService: MessageService) {
+  }
 
   convertToDto(vehicle: Vehicle) {
     return {
@@ -106,6 +108,6 @@ export class VehicleService {
   }
 
   private log(message: string) {
-    // TODO: Add logging service
+    console.log(`VehicleService: ${message}`);
   }
 }

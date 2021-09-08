@@ -1,0 +1,10 @@
+<h2>Add a new vehicle</h2>
+
+
+
+<button (click)="test()">Test</button>
+
+<app-create-vehicle-input-make *ngIf="!make; else elseBlock" (makeEmitter)="make=$event"></app-create-vehicle-input-make>
+<ng-template #elseBlock>
+  <app-create-vehicle-input-model *ngIf="!model && make" (modelEmitter)="model=$event" [make]="make"></app-create-vehicle-input-model>
+</ng-template>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VehicleService } from '../../services/vehicle.service';
-import * as global from '../../global';
+import { Model } from 'src/app/models/model';
+import { Make } from '../../../models/make';
+import { MakeService } from '../../../services/make.service';
 
 @Component({
   selector: 'app-create-vehicle',
@@ -8,12 +9,19 @@ import * as global from '../../global';
   styleUrls: ['./create-vehicle.component.css']
 })
 export class CreateVehicleComponent implements OnInit {
+  make?: Make;
+  model?: Model;
 
   constructor(
-    private vehicleService: VehicleService
+    private makeService: MakeService
   ) { }
 
   ngOnInit(): void {
+  }
+
+  test() {
+
+    console.log(this.make);
   }
 
 }
