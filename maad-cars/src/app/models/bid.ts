@@ -6,6 +6,6 @@ export interface bid{
     bid_id:number;
     bid_amount:number;
     time_stamp:Time;
-    sale:Sale;
-    user:User;
+    sale_id:Sale;
+    user_id:User;
 }
