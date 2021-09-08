@@ -1,1 +1,21 @@
-
+version: 0.2
+env:
+    variables:
+        CACHE_CONTROL: "86400"
+        S3_BUCKET: "s3-angular-bucket-test"
+        BUILD_FOLDER: "dist"
+phases:
+  install:
+    runtime-versions:
+        nodejs: 12
+    commands:
+        - cd maad-cars && npm install
+        - cd maad-cars && npm install -g @angular/cli
+  build:
+    commands:
+        - cd maad-cars && ng build --prod
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'maad-cars/dist*'
+    discard-paths: yes
