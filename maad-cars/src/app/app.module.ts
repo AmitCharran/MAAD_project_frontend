@@ -8,6 +8,8 @@ import { VehicleListComponent } from './components/vehicle-list/vehicle-list.com
 import { CreateVehicleComponent } from './components/create-vehicle/create-vehicle.component';
 import { AllSalesComponent } from './all-sales/all-sales.component';
 import { MessagesComponent } from './messages/messages.component';
+import { MySalesComponent } from './components/my-sales/my-sales.component';
+import { BidsOnCarComponent } from './components/bids-on-car/bids-on-car.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { MessagesComponent } from './messages/messages.component';
     AllSalesComponent,
     MessagesComponent,
     VehicleListComponent,
-    CreateVehicleComponent
+    CreateVehicleComponent,
+    MySalesComponent,
+    BidsOnCarComponent
   ],
   imports: [
     HttpClientModule,
