@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { CreateVehicleComponent } from './components/create-vehicle/create-vehicle.component';
-import { AllSalesComponent } from './all-sales/all-sales.component';
-import { MessagesComponent } from './messages/messages.component';
-import { SaleDetailComponent } from './sale-detail/sale-detail.component';
+import { AllSalesComponent } from './components/all-sales/all-sales.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
 
 @NgModule({
   declarations: [

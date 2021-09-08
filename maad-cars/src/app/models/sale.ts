@@ -1,8 +1,8 @@
 import { Time } from "@angular/common";
-import { Vehicle } from "./models/vehicle";
+import { Vehicle } from "./vehicle";
 
 export interface Sale {
-    id: number;
+    sale_id: number;
     vehicle_id: Vehicle;
     time_started: Time;
 }
