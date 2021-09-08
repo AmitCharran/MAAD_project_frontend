@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from '../message.service';
+import { MessageService } from './message.service';
 import { Bid } from '../models/bid';
 
 @Injectable({
@@ -77,7 +77,7 @@ export class BidService {
   }
   //////// Save methods //////////
   /** POST: add a new bid to the server */
-  addSale(sale: Bid): Observable<Bid> {
+  addBid(sale: Bid): Observable<Bid> {
       return this.http.post<Bid>(this.bidsUrl, sale, this.httpOptions).pipe(
         tap((newBid: Bid) => this.log(`added sale w/ id=${newBid.bid_id}`)),
         catchError(this.handleError<Bid>('addSale'))
@@ -85,7 +85,7 @@ export class BidService {
     }
 
   /** PUT: update the bid on the server */
-  updateSale(bid: Bid): Observable<any> {
+  updateBid(bid: Bid): Observable<any> {
     return this.http.put(this.bidsUrl, bid, this.httpOptions).pipe(
       tap(_ => this.log(`updated bid id=${bid.bid_id}`)),
       catchError(this.handleError<any>('updateBid'))

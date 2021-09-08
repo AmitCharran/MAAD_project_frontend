@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Sale } from './sale';
+import { Sale } from '../models/sale';
 import { MessageService } from './message.service';
 
 
@@ -72,7 +72,7 @@ export class SaleService {
   /** POST: add a new sale to the server */
   addSale(sale: Sale): Observable<Sale> {
     return this.http.post<Sale>(this.salesUrl, sale, this.httpOptions).pipe(
-      tap((newSale: Sale) => this.log(`added sale w/ id=${newSale.id}`)),
+      tap((newSale: Sale) => this.log(`added sale w/ id=${newSale.sale_id}`)),
       catchError(this.handleError<Sale>('addSale'))
     );
   }
@@ -90,7 +90,7 @@ export class SaleService {
   /** PUT: update the sale on the server */
   updateSale(sale: Sale): Observable<any> {
     return this.http.put(this.salesUrl, sale, this.httpOptions).pipe(
-      tap(_ => this.log(`updated sale id=${sale.id}`)),
+      tap(_ => this.log(`updated sale id=${sale.sale_id}`)),
       catchError(this.handleError<any>('updateSale'))
     );
   }

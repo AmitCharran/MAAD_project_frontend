@@ -1,0 +1,19 @@
+<h2>All Sales</h2>
+
+<!-- <div>
+  <label for="filter-sales">Filter by Make: </label>
+  <input id="filter-sales" #heroName /> -->
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <!-- <button class="add-button" (click)="add(heroName.value); heroName.value=''">
+    Add hero
+  </button>
+</div> -->
+
+<ul class="all-sales">
+  <li *ngFor="let sale of sales">
+    <a routerLink="/all-sales/detail/{{sale.sale_id}}">
+      <span class="badge">{{sale.sale_id}}</span> Make: {{sale.vehicle_id.make}}, Model: {{sale.vehicle_id.model}}
+    </a>
+  </li>
+</ul>

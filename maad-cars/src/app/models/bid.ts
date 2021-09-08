@@ -1,8 +1,8 @@
 import { Time } from "@angular/common";
-import { Sale } from "../sale";
+import { Sale } from "./sale";
 import { User } from "./user";
 
-export interface bid{
+export interface Bid{
     bid_id:number;
     bid_amount:number;
     time_stamp:Time;
