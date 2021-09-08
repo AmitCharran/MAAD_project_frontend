@@ -13,7 +13,7 @@ phases:
         - npm install -g @angular/cli
   build:
     commands:
-        - cd maad-cars && ng build --prod
+        - ng build --prod
 artifacts:
     files:
         - '**/*'
