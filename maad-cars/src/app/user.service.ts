@@ -9,13 +9,15 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class UserService {
+
+  constructor(private http : HttpClient) { }
+
+
   private usersApiUrl = "http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/users";
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-
-  constructor(private http : HttpClient) { }
 
   /**
    * Gets all the available users.
