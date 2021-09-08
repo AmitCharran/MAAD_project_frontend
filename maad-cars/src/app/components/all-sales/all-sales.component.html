@@ -11,9 +11,9 @@
 </div> -->
 
 <ul class="all-sales">
-  <li *ngFor="let sale of all-sales">
-    <a routerLink="/sales/{{sale.sale_id}}">
-      <span class="badge">{{sale.sale_id}}</span> {{sale.vehicle_id}}
+  <li *ngFor="let sale of sales">
+    <a routerLink="/all-sales/detail/{{sale.sale_id}}">
+      <span class="badge">{{sale.sale_id}}</span> Make: {{sale.vehicle_id.make}}, Model: {{sale.vehicle_id.model}}
     </a>
   </li>
 </ul>

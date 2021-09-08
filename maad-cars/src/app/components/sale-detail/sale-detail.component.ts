@@ -17,7 +17,7 @@ export class SaleDetailComponent implements OnInit {
 
   sale: Sale | undefined;
   vehicle: Vehicle | undefined;
-  bid: Bid | undefined;
+  bids: Bid[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +35,8 @@ export class SaleDetailComponent implements OnInit {
     this.saleService.getSale(id)
       .subscribe(sale => this.sale = sale);
     this.vehicle = this.sale?.vehicle_id;
-    this.bidService.getMaxBidBySale(this.sale?.sale_id)
-      .subscribe(bid => this.bid = bid);
+    this.bidService.getBid()
+      .subscribe(bids => this.bids = bids);
   }
 
   goBack(): void {
@@ -45,7 +45,7 @@ export class SaleDetailComponent implements OnInit {
 
   makeBid(): void {
     if (this.sale) {
-      this.bidService.addBid(this.bid)
+      this.bidService.addBid(this.bids)
         .subscribe(() => this.goBack());
     }
   }

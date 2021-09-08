@@ -21,8 +21,6 @@ export class AllSalesComponent implements OnInit {
   getSales(): void {
     this.saleService.getSales()
     .subscribe(sales => this.sales = sales);
+
   }
-
-  
-
 }
