@@ -7,6 +7,9 @@ import { SaleService } from '../../services/sale.service';
 import { Bid } from '../../models/bid';
 import { BidService } from '../../services/bid.service';
 import { Vehicle } from '../../models/vehicle';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
+import { current_user_id } from 'src/app/global';
 
 @Component({
   selector: 'app-sale-detail',
@@ -18,12 +21,14 @@ export class SaleDetailComponent implements OnInit {
   sale: Sale | undefined;
   vehicle: Vehicle | undefined;
   bids: Bid[] = [];
-  bid: Bid | undefined;
+  maxBid: Bid | undefined;
+  amount: number | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private saleService: SaleService,
     private bidService: BidService,
+    private userService: UserService,
     private location: Location
   ) { }
 
@@ -38,6 +43,7 @@ export class SaleDetailComponent implements OnInit {
     this.vehicle = this.sale?.vehicle_id;
     this.bidService.getBids()
       .subscribe(bids => this.bids = bids);
+    
   }
 
   goBack(): void {
@@ -45,10 +51,21 @@ export class SaleDetailComponent implements OnInit {
   }
 
   makeBid(): void {
-    if (this.sale) {
-      this.bidService.addBid(this.bid)
-        .subscribe(() => this.goBack());
-    }
+    let userLogin: User;
+    this.userService.getUserById(current_user_id)
+    .subscribe(user => userLogin = user);
+    // if (this.amount && this.sale) {
+    //   let bid: Bid = {
+    //     bid_id: 0,
+    //     bid_amount: this.amount,
+    //     sale_id: this.sale,
+    //     user_id: userLogin,
+    //     time_stamp
+    //   };
+
+      // this.bidService.addBid(bid)
+      //   .subscribe(() => this.goBack());
+    //}
   }
 
 }

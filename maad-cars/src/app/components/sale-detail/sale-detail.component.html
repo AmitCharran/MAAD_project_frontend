@@ -4,10 +4,10 @@
     <div><span>Model: </span>{{sale.vehicle_id.model.name}}</div>
     <div><span>Color: </span>{{sale.vehicle_id.color}}</div>
     <div><span>Description: </span>{{sale.vehicle_id.model.description}}</div>
-    <div><span>Current Largest Bid: </span>{{bid.bid_amount}}</div>
+    <div><span>Current Largest Bid: </span>{{maxBid.bid_amount}}</div>
     <div>
       <label for="make-bid">Make Bid: </label>
-      <input id="make-bid" [(ngModel)]="hero.name" placeholder=""/>
+      <input id="make-bid" [(ngModel)]="amount" placeholder=""/>
     </div>
     <button (click)="goBack()">go back</button>
     <button (click)="makeBid()">save</button>
