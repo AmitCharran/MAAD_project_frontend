@@ -1,0 +1,10 @@
+<h2>Current Bids on your car</h2>
+<ul class='bids'>
+    <li *ngFor="let bid of bids">
+       <span>Bid id: {{bid.bid_id}}</span>
+       <p>User: {{bid.user.username}}</p>
+       <p>Bid Amount: ${{bid.bid}}</p>
+    </li>
+</ul>
+
+<button (click)="goBack()">View Cars Again</button>
