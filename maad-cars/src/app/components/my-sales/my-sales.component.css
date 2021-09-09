@@ -1,0 +1,19 @@
+.lists{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: black;
+    padding: 20px;
+    font-size: 100%;
+    margin-right: 60%;
+    margin-bottom: 5%;
+  }
+
+.my-sales a{
+    color: #000000;
+    text-decoration: none;
+}
+
+.lists:hover{
+    background-color: aliceblue;
+    color: gray;
+}
