@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { VehicleListComponent } from './components/vehicles/vehicle-list/vehicle-list.component';
+import { CreateVehicleComponent } from './components/vehicles/create-vehicle/create-vehicle.component';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
 import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { AllSalesComponent } from './components/all-sales/all-sales.component';
@@ -10,6 +11,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 const routes: Routes = [
   { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
   { path: 'vehicles', component: VehicleListComponent },
+  { path: 'vehicles/add-vehicle', component: CreateVehicleComponent },
   { path: 'all-sales/detail/:sale_id', component: SaleDetailComponent },
   { path: 'my-sales', component: MySalesComponent },
   { path: 'all-sales', component: AllSalesComponent },
