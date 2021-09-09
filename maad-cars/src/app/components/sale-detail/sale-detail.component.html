@@ -1,9 +1,9 @@
 <div *ngIf="sale">
     <h2>Vehicle Details</h2>
-    <div><span>Make: </span>{{sale.vehicle_id.model.make.name}}</div>
-    <div><span>Model: </span>{{sale.vehicle_id.model.name}}</div>
-    <div><span>Color: </span>{{sale.vehicle_id.color}}</div>
-    <div><span>Description: </span>{{sale.vehicle_id.description}}</div>
+    <div><span>Make: </span>{{sale.vehicle.model.make.name}}</div>
+    <div><span>Model: </span>{{sale.vehicle.model.name}}</div>
+    <div><span>Color: </span>{{sale.vehicle.color}}</div>
+    <div><span>Description: </span>{{sale.vehicle.description}}</div>
     <div><span>Current Largest Bid: </span>{{maxBid?.bid_amount}}</div>
     <div>
       <label for="make-bid">Make Bid: </label>

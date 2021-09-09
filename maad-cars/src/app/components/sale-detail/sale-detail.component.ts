@@ -39,11 +39,22 @@ export class SaleDetailComponent implements OnInit {
   getSale(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('sale_id')!, 10);
     this.saleService.getSale(id)
-      .subscribe(sale => this.sale = sale);
-    this.vehicle = this.sale?.vehicle;
-    this.bidService.getBids()
-      .subscribe(bids => this.bids = bids);
-    
+      .subscribe(sale => {
+        this.sale = sale;
+        this.vehicle = this.sale?.vehicle;
+        this.bidService.getBids()
+          .subscribe(bids => {
+            this.bids = bids
+            this.maxBid = bids[0];
+            for (let bid of bids){
+              if(bid.bid_amount > this.maxBid.bid_amount && bid.sale_id === this.sale){
+                this.maxBid = bid;
+              }
+            }
+          }
+        );
+      }
+    );
   }
 
   goBack(): void {
@@ -54,22 +65,22 @@ export class SaleDetailComponent implements OnInit {
     //let userLogin: User;
     let bid: Bid;
     
-      this.userService.getUserById(current_user_id)
+    this.userService.getUserById(current_user_id)
       .subscribe(user => {
-        let time = new Time();
         if(this.amount && this.sale) {
         bid = {
           bid_id: 0,
           bid_amount: this.amount,
           sale_id: this.sale,
           user_id: user,
-          time_stamp: 
+          time_stamp: "current time"
         }}
         this.bidService.addBid(bid)
           .subscribe(() => this.goBack());
-      });
-    }
-    }
+      }
+    );
   }
-
 }
+  
+
+
