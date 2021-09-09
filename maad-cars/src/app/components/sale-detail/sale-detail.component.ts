@@ -64,27 +64,23 @@ export class SaleDetailComponent implements OnInit {
   }
 
   makeBid(): void {
-    //let userLogin: User;
     let bid: Bid;
-    console.log(`Started makeBid, user id: ${current_user_id}`);
     this.userService.getUserById(current_user_id)
       .subscribe(user => {
         if(this.amount && this.sale) {
-          console.log("Making bid object");
           let bid_amount = parseInt(this.amount);
-        bid = {
-          bid_id: 0,
-          bid: bid_amount,
-          sale: this.sale,
-          user: user,
-          time: "current time"
-        }}
-        console.log(bid);
+          bid = {
+            bid_id: 0,
+            bid: bid_amount,
+            sale: this.sale,
+            user: user,
+            time: "current time"
+          }
+        }
         this.bidService.addBid(bid)
           .subscribe(() => this.goBack());
       }
     );
-    console.log("method complete");
   }
 }
   
