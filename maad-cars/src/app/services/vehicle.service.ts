@@ -60,6 +60,7 @@ export class VehicleService {
   POST /vehicles */
   createVehicle(vehicle: Vehicle): Observable<Vehicle> {
     this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
+    console.log(this.httpOptions.headers);
     return this.http.post<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
             .pipe(
               tap((newVehicle: Vehicle) => this.log(`inserted Vehicle with id=${newVehicle.vehicle_id}`)),
