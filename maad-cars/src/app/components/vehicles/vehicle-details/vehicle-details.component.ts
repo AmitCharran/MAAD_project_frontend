@@ -72,17 +72,23 @@ export class VehicleDetailsComponent implements OnInit {
   }
 
   setStolen(flag: boolean) {
-    this.vehicle!.is_stolen = flag;
+    this.vehicle!._stolen = flag;
+    console.log(this.vehicle?._stolen);
+    console.log(this.vehicle);
     this.vehicleService.updateVehicle(this.vehicle!)
-      .subscribe(vehicle => this.vehicle = vehicle);
+      .subscribe(vehicle => {
+        console.log(vehicle);
+        this.vehicle = vehicle;
+      });
   }
 
   putOnSale() {
     const newSale = {
       sale_id: 0,
-      vehicle: this.vehicle!,
-      time_started: ""
+      vehicle: this.passedVehicle!,
+      time_started: "00:00:00"
     }
+    console.log(newSale);
     this.saleService.addSale(newSale)
       .subscribe(sale => this.router.navigateByUrl(`/my-sales/bids/${sale.sale_id}`));
   }

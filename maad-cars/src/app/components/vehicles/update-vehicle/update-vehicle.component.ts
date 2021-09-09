@@ -40,6 +40,7 @@ export class UpdateVehicleComponent implements OnInit {
     }
     this.vehicle!.color = this.color!;
     this.vehicle!.description = this.description!;
+    console.log(this.vehicle?.vehicle_id);
     this.vehicleService.updateVehicle(this.vehicle!)
       .subscribe(vehicle => {
         const id = Number(this.route.snapshot.paramMap.get('id'));
