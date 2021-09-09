@@ -16,7 +16,6 @@ export class VehicleListComponent implements OnInit {
     private vehicleService: VehicleService
   ) { }
   ngOnInit(): void {
-    global.setCurrentUserId(1);
     this.getMyVehicles();
   }
 

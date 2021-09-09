@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ModelService } from '../../../services/model.service';
-import { MakeService } from '../../../services/make.service';
 import { Make } from '../../../models/make';
 import { Model } from '../../../models/model';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-vehicle-input-model',
@@ -35,8 +33,7 @@ export class CreateVehicleInputModelComponent implements OnInit {
   filteredModels: Model[] = [];
 
   constructor(
-    private modelService: ModelService,
-    private makeService: MakeService
+    private modelService: ModelService
   ) { }
 
   ngOnInit(): void {

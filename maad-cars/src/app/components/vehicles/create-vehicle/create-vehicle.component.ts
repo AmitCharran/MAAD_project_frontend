@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Model } from 'src/app/models/model';
 import { Make } from '../../../models/make';
 import { Vehicle } from '../../../models/vehicle';
-import { User } from '../../../models/user';
 import * as global from '../../../global';
 import { UserService } from 'src/app/services/user.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
