@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
 import { Bid } from '../models/bid';
+import { current_user_id } from '../global';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class BidService {
 
   private bidsUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/bids';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json',
+      'user_id': `${current_user_id}` })
   };
 
   constructor(private http: HttpClient,
@@ -77,10 +79,16 @@ export class BidService {
   }
   //////// Save methods //////////
   /** POST: add a new bid to the server */
-  addBid(sale: Bid): Observable<Bid> {
-      return this.http.post<Bid>(this.bidsUrl, sale, this.httpOptions).pipe(
-        tap((newBid: Bid) => this.log(`added sale w/ id=${newBid.bid_id}`)),
-        catchError(this.handleError<Bid>('addSale'))
+  addBid(bid: Bid): Observable<Bid> {
+    var bidDTO = {
+      bid_id: bid.bid_id,
+      bid: bid.bid,
+      sale_id: bid.sale.sale_id,
+      user_id: bid.user.user_id
+    }
+      return this.http.post<Bid>(this.bidsUrl, bidDTO, this.httpOptions).pipe(
+        tap((newBid: Bid) => this.log(`added bid w/ id=${newBid.bid_id}`)),
+        catchError(this.handleError<Bid>('addBid'))
       );
     }
 
