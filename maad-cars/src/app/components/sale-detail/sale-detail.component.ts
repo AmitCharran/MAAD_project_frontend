@@ -40,7 +40,7 @@ export class SaleDetailComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('sale_id')!, 10);
     this.saleService.getSale(id)
       .subscribe(sale => this.sale = sale);
-    this.vehicle = this.sale?.vehicle_id;
+    this.vehicle = this.sale?.vehicle;
     this.bidService.getBids()
       .subscribe(bids => this.bids = bids);
     

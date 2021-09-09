@@ -1,0 +1,15 @@
+<div *ngIf="user">
+    <h2>Edit Profile</h2>
+    <div>
+        <h4>Username: {{user.username}}</h4>
+        <label for="userFirstName">First name: </label>
+        <input id="userFirstName" [(ngModel)]="user.firstName" placeholder="First">
+        <label for="userLastName">Last name: </label>
+        <input id="userLastName" [(ngModel)]="user.lastName" placeholder="Last">
+    </div>
+    <div>
+        <label for="userEmail">Email: </label>
+        <input id="userEmail" [(ngModel)]="user.email" placeholder="example@example.com">
+    </div>
+    <button (click)="updateUser()">Update Information</button>
+</div>

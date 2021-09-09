@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { AllSalesComponent } from './components/all-sales/all-sales.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
@@ -19,6 +20,7 @@ import { CreateVehicleFormComponent } from './components/vehicles/create-vehicle
 @NgModule({
   declarations: [
     AppComponent,
+    UserDetailComponent,
     AllSalesComponent,
     MessagesComponent,
     SaleDetailComponent,
@@ -34,7 +36,8 @@ import { CreateVehicleFormComponent } from './components/vehicles/create-vehicle
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
