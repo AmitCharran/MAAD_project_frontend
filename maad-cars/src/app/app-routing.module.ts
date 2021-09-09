@@ -7,6 +7,7 @@ import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { AllSalesComponent } from './components/all-sales/all-sales.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { LoginComponent } from './components/login/login.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'my-sales', component: MySalesComponent },
   { path: 'all-sales', component: AllSalesComponent },
   { path: 'user', component: UserDetailComponent },
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'create-account', component: CreateAccountComponent}
 ];
 
 @NgModule({

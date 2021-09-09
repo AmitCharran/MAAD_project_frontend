@@ -1,1 +1,26 @@
-<p>create-account works!</p>
+<div>
+    <h4>Account Creation</h4>
+    <div>
+        <label for="usernameInput">Username</label>
+        <input id="usernameInput" type="text" [(ngModel)]="input.username">
+    </div>
+    <div>
+        <label for="passwordInput">Password</label>
+        <input id="passwordInput" type="password" [(ngModel)]="input.password">
+    </div>
+    <div>
+        <label>First Name</label>
+        <input id="firstName" type="text" [(ngModel)]="input.firstName">
+    </div>
+    <div>
+        <label>Last Name</label>
+        <input id="lastName" type="text" [(ngModel)]="input.lastName">
+    </div>
+    <div>
+        <label>Email</label>
+        <input id="email" type="email" [(ngModel)]="input.email">
+    </div>
+</div>
+<div>
+    <button (click)="createUserAccount()">Create Account</button>
+</div>
