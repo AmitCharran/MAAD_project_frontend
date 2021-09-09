@@ -1,0 +1,16 @@
+<div *ngIf="vehicle">
+    <h2>Vehicle Details</h2>
+    <div><span>VIN: </span>{{vehicle.vin}}</div>
+    <div><span>Make: </span>{{vehicle.model.make.name}}</div>
+    <div><span>Model: </span>{{vehicle.model.name}}</div>
+    <div><span>Color: </span>{{vehicle.color}}</div>
+    <div><span>Description: </span>{{vehicle.description}}</div>
+    <div>
+        <span *ngIf="isOnDetailRoute">
+            <button routerLink="edit">Edit</button>
+            <button (click)="goBack()">Go back</button>
+        </span>
+        <button *ngIf="!isOnDetailRoute" 
+            (click)="backToMyVehicles()">Return to My Vehicles</button>
+    </div>
+</div>
