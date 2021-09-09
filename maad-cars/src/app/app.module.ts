@@ -18,6 +18,7 @@ import { CreateVehicleInputMakeComponent } from './components/vehicles/create-ve
 import { CreateVehicleInputModelComponent } from './components/vehicles/create-vehicle-input-model/create-vehicle-input-model.component';
 import { CreateVehicleFormComponent } from './components/vehicles/create-vehicle-form/create-vehicle-form.component';
 import { VehicleDetailsComponent } from './components/vehicles/vehicle-details/vehicle-details.component';
+import { ListBidsOnCarsComponent } from './components/list-bids-on-cars/list-bids-on-cars.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -37,6 +38,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MySalesComponent,
     BidsOnCarComponent,
     VehicleDetailsComponent,
+    ListBidsOnCarsComponent,
     LoginComponent,
     CreateAccountComponent,
     NavbarComponent
