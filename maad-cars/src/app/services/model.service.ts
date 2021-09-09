@@ -72,7 +72,7 @@ export class ModelService {
   /** POST: add a new model to the server */
   addModel(model: Model): Observable<Model> {
     return this.http.post<Model>(this.modelsUrl, model, this.httpOptions).pipe(
-      tap((newModel: Model) => this.log(`added model w/ id=${newModel.id}`)),
+      tap((newModel: Model) => this.log(`added model w/ id=${newModel.model_id}`)),
       catchError(this.handleError<Model>('addModel'))
     );
   }
@@ -90,7 +90,7 @@ export class ModelService {
   /** PUT: update the model on the server */
   updateModel(model: Model): Observable<any> {
     return this.http.put(this.modelsUrl, model, this.httpOptions).pipe(
-      tap(_ => this.log(`updated model id=${model.id}`)),
+      tap(_ => this.log(`updated model id=${model.model_id}`)),
       catchError(this.handleError<any>('updateModel'))
     );
   }
