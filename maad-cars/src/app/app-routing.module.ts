@@ -10,7 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/vehicles', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'vehicles', component: VehicleListComponent },
   { path: 'all-sales/detail/:sale_id', component: SaleDetailComponent },
   { path: 'my-sales', component: MySalesComponent },
