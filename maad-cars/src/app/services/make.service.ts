@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Make } from '../make';
+import { Make } from '../models/make';
 import { MessageService } from './message.service';
 
 
@@ -72,7 +72,7 @@ export class MakeService {
   /** POST: add a new make to the server */
   addMake(make: Make): Observable<Make> {
     return this.http.post<Make>(this.makesUrl, make, this.httpOptions).pipe(
-      tap((newMake: Make) => this.log(`added make w/ id=${newMake.id}`)),
+      tap((newMake: Make) => this.log(`added make w/ id=${newMake.make_id}`)),
       catchError(this.handleError<Make>('addMake'))
     );
   }
@@ -90,7 +90,7 @@ export class MakeService {
   /** PUT: update the make on the server */
   updateMake(make: Make): Observable<any> {
     return this.http.put(this.makesUrl, make, this.httpOptions).pipe(
-      tap(_ => this.log(`updated make id=${make.id}`)),
+      tap(_ => this.log(`updated make id=${make.make_id}`)),
       catchError(this.handleError<any>('updateMake'))
     );
   }
