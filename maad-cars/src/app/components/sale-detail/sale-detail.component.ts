@@ -19,10 +19,9 @@ import { current_user_id } from 'src/app/global';
 export class SaleDetailComponent implements OnInit {
 
   sale: Sale | undefined;
-  vehicle: Vehicle | undefined;
   bids: Bid[] = [];
   maxBid: Bid | undefined;
-  amount: number | undefined;
+  amount: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,11 +38,25 @@ export class SaleDetailComponent implements OnInit {
   getSale(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('sale_id')!, 10);
     this.saleService.getSale(id)
-      .subscribe(sale => this.sale = sale);
-    this.vehicle = this.sale?.vehicle;
-    this.bidService.getBids()
-      .subscribe(bids => this.bids = bids);
-    
+      .subscribe(sale => {
+        this.sale = sale;
+        this.bidService.getBids()
+          .subscribe(bids => {
+            this.bids = bids;
+            for (let bid of bids){
+              if(bid.sale.sale_id === this.sale?.sale_id){
+                if(this.maxBid == undefined){
+                  this.maxBid = bid;
+                }
+                if(bid.bid > this.maxBid.bid){
+                  this.maxBid = bid;
+                }
+              }
+            }
+          }
+        );
+      }
+    );
   }
 
   goBack(): void {
@@ -51,21 +64,29 @@ export class SaleDetailComponent implements OnInit {
   }
 
   makeBid(): void {
-    let userLogin: User;
+    //let userLogin: User;
+    let bid: Bid;
+    console.log(`Started makeBid, user id: ${current_user_id}`);
     this.userService.getUserById(current_user_id)
-    .subscribe(user => userLogin = user);
-    // if (this.amount && this.sale) {
-    //   let bid: Bid = {
-    //     bid_id: 0,
-    //     bid_amount: this.amount,
-    //     sale_id: this.sale,
-    //     user_id: userLogin,
-    //     time_stamp
-    //   };
-
-      // this.bidService.addBid(bid)
-      //   .subscribe(() => this.goBack());
-    //}
+      .subscribe(user => {
+        if(this.amount && this.sale) {
+          console.log("Making bid object");
+          let bid_amount = parseInt(this.amount);
+        bid = {
+          bid_id: 0,
+          bid: bid_amount,
+          sale: this.sale,
+          user: user,
+          time: "current time"
+        }}
+        console.log(bid);
+        this.bidService.addBid(bid)
+          .subscribe(() => this.goBack());
+      }
+    );
+    console.log("method complete");
   }
-
 }
+  
+
+

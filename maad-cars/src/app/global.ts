@@ -1,2 +1,2 @@
-export let current_user_id: number;
+export let current_user_id = 1;
 
