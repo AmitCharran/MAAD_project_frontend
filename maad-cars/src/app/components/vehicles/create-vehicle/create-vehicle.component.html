@@ -1,0 +1,20 @@
+<h2>Add a new vehicle</h2>
+
+<app-create-vehicle-input-make *ngIf="!make; else elseBlock" (makeEmitter)="make=$event"></app-create-vehicle-input-make>
+<ng-template #elseBlock>
+  <app-create-vehicle-input-model *ngIf="!model && make; else elseBlock" (modelEmitter)="model=$event" [make]="make"></app-create-vehicle-input-model>
+  <ng-template #elseBlock>
+    <app-create-vehicle-form *ngIf="!vin || !color || !description; else elseBlock" (formEmitter)="unpackForm($event)"></app-create-vehicle-form>
+    <ng-template #elseBlock>
+      <app-vehicle-details [passedVehicle]="vehicle"></app-vehicle-details>
+      <button (click)="addVehicle()">Finalize New Vehicle</button>
+      <div *ngIf="insertHasFailed">
+        <aside><em>Failed to add this vehicle! This VIN might have already been registered.</em></aside>
+      </div>
+    </ng-template>
+  </ng-template>
+</ng-template>
+<div *ngIf="make">
+    <button (click)="backOneMenu()">Back</button>
+    <button *ngIf="make && model" (click)="startOver()">Start Over</button>
+</div>
