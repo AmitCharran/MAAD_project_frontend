@@ -1,8 +1,30 @@
 <h3>Additional vehicle details:</h3>
 
-<form #vehicleDetailsForm="ngForm"></form>
+<!--form #vehicleDetailsForm="ngForm">
   <div>
     <label for="vin">VIN</label>
-    <input id="vin" type="text" maxlength="17" [(ngModel)]="vin">
+    <input id="vin" type="text" minlength="17" maxlength="17" required [(ngModel)]="vin">
+    <div *ngIf="vin.invalid && (vin.dirty || vin.touched)">
+      <div *ngIf="vin.errors?.required">
+        VIN is required.
+      </div>
+      <div *ngIf="vin.errors?.minlength || vin.errors?.maxlength">
+        VIN must be 17 characters long.
+      </div>
+    </div>
+    <label for="color">Color</label>
+    <input id="color" type="text" minlength="2" maxlength="20" required [(ngModel)]="color">
+    <div *ngIf="color.invalid && (color.dirty || color.touched)">
+      <div *ngIf="color.errors?.required">
+        Color is required.
+      </div>
+      <div *ngIf="color.errors?.minlength">
+        Invalid color.
+      </div>
+    </div>
+    <label for="description">Description</label>
+    <input id="description" type="text" [(ngModel)]="description">
   </div>
+  <button (click)="acceptForm()">Submit</button>
 </form>
+-->

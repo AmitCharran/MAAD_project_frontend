@@ -8,7 +8,7 @@ import { Make } from '../../../models/make';
                 <h3>Search for Make:</h3>
                 <input id="makeName" type="text" [(ngModel)]="inputMake.name">
                 <button (click)="findMake()">Search</button>
-                <aside *ngIf="failedToFind===true">No make of that name was found!</aside>
+                <aside *ngIf="failedToFind">No make of that name was found!</aside>
               </div>
   `,
   styleUrls: ['./create-vehicle-input-make.component.css']

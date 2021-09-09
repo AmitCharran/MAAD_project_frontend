@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
+import { VehicleListComponent } from './components/vehicles/vehicle-list/vehicle-list.component';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
 import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { AllSalesComponent } from './components/all-sales/all-sales.component';

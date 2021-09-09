@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-vehicle-form.component.css']
 })
 export class CreateVehicleFormComponent implements OnInit {
-  vin: string;
+  vin: string = '';
+  color: string = '';
+  description: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

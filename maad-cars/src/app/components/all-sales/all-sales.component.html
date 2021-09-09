@@ -13,7 +13,7 @@
 <ul class="all-sales">
   <li *ngFor="let sale of sales">
     <a routerLink="/all-sales/detail/{{sale.sale_id}}">
-      <span class="badge">{{sale.sale_id}}</span> Make: {{sale.vehicle_id.model.make.name}}, Model: {{sale.vehicle_id.model.name}}
+      <span class="badge">{{sale.sale_id}}</span> Make: {{sale.vehicle.model.make.name}}, Model: {{sale.vehicle.model.name}}
     </a>
   </li>
 </ul>
