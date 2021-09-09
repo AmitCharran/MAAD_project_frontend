@@ -14,7 +14,6 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
 import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { BidsOnCarComponent } from './components/bids-on-car/bids-on-car.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
