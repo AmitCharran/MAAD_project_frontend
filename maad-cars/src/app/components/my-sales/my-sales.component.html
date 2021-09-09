@@ -1,10 +1,13 @@
 <h2>Your Current Cars On Sales</h2>
 <ul class='my-sales'>
     <li *ngFor="let sale of sales">
+        <div class= outer>
         <a routerLink="/my-sales/bids/{{sale.sale_id}}">
+        <div class="lists">
         <span>Sale id: {{sale.sale_id}}</span>
         <p>Vehicle: {{sale.vehicle.model.make.name}}  {{sale.vehicle.model.name}}</p> 
         <p>Car Color: {{sale.vehicle.color}}</p>
-         </a>
+        </div></a></div>
+        
     </li>
 </ul>
