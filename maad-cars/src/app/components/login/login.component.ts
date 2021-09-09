@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
     this.input.username = this.username;
     this.input.password = this.password; 
     this.userService.loginUser(this.input)
-    .subscribe(user => global.setCurrentUserId(user.user_id));
-    this.router.navigateByUrl("/vehicles");
+    .subscribe(user => {global.setCurrentUserId(user.user_id);
+                        this.router.navigateByUrl("/vehicles");
+                      });
+    
   }
 }

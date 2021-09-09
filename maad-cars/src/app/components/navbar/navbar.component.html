@@ -1,0 +1,12 @@
+<nav>
+    <div *ngIf="!isLoggedIn">
+      <a routerLink="/create-account">Create New Account</a>
+      <a routerLink="/login">Login</a>
+    </div>
+    <div *ngIf="isLoggedIn">
+      <a routerLink="/vehicles">My Vehicles</a>
+      <a routerLink="/my-sales">My Sales</a>
+      <a routerLink="/all-sales">All Sales</a>
+      <a routerLink="/user">My Profile</a>
+    </div>
+</nav>
