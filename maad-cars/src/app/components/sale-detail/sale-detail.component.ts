@@ -51,21 +51,25 @@ export class SaleDetailComponent implements OnInit {
   }
 
   makeBid(): void {
-    let userLogin: User;
-    this.userService.getUserById(current_user_id)
-    .subscribe(user => userLogin = user);
-    // if (this.amount && this.sale) {
-    //   let bid: Bid = {
-    //     bid_id: 0,
-    //     bid_amount: this.amount,
-    //     sale_id: this.sale,
-    //     user_id: userLogin,
-    //     time_stamp
-    //   };
-
-      // this.bidService.addBid(bid)
-      //   .subscribe(() => this.goBack());
-    //}
+    //let userLogin: User;
+    let bid: Bid;
+    
+      this.userService.getUserById(current_user_id)
+      .subscribe(user => {
+        let time = new Time();
+        if(this.amount && this.sale) {
+        bid = {
+          bid_id: 0,
+          bid_amount: this.amount,
+          sale_id: this.sale,
+          user_id: user,
+          time_stamp: 
+        }}
+        this.bidService.addBid(bid)
+          .subscribe(() => this.goBack());
+      });
+    }
+    }
   }
 
 }
