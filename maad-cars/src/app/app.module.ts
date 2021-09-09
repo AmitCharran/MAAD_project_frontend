@@ -14,6 +14,9 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
 import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { BidsOnCarComponent } from './components/bids-on-car/bids-on-car.component';
+import { LoginComponent } from './components/login/login.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { BidsOnCarComponent } from './components/bids-on-car/bids-on-car.compone
     VehicleListComponent,
     CreateVehicleComponent,
     MySalesComponent,
-    BidsOnCarComponent
+    BidsOnCarComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    NavbarComponent
   ],
   imports: [
     HttpClientModule,
