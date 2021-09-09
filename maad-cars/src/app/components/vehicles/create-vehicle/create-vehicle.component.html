@@ -1,0 +1,9 @@
+<h2>Add a new vehicle</h2>
+
+<app-create-vehicle-input-make *ngIf="!make; else elseBlock" (makeEmitter)="make=$event"></app-create-vehicle-input-make>
+<ng-template #elseBlock>
+  <app-create-vehicle-input-model *ngIf="!model && make; else elseBlock" (modelEmitter)="model=$event" [make]="make"></app-create-vehicle-input-model>
+  <ng-template #elseBlock>
+    <app-create-vehicle-form *ngIf="!vin || !color || !description" (formEmitter)="unpackForm($event)"></app-create-vehicle-form>
+  </ng-template>
+</ng-template>
