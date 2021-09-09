@@ -14,6 +14,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
 import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { BidsOnCarComponent } from './components/bids-on-car/bids-on-car.component';
+import { ListBidsOnCarsComponent } from './components/list-bids-on-cars/list-bids-on-cars.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BidsOnCarComponent } from './components/bids-on-car/bids-on-car.compone
     VehicleListComponent,
     CreateVehicleComponent,
     MySalesComponent,
-    BidsOnCarComponent
+    BidsOnCarComponent,
+    ListBidsOnCarsComponent
   ],
   imports: [
     HttpClientModule,
