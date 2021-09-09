@@ -10,8 +10,8 @@
 <div>
   <ul class="vehicles">
     <li *ngFor="let vehicle of this.myVehicles">
-      <a [routerLink]="['/detail/{{vehicle.vehicle_id}}']">
-        <span class="vehicleRow">{{vehicle.vin}}</span> {{vehicle.model.make.name}} {{vehicle.model.name}}
+      <a routerLink="detail/{{vehicle.vehicle_id}}">
+        <span class="vehicleRow">{{vehicle.vin?.toUpperCase()}}</span> {{vehicle.model.make.name}} {{vehicle.model.name}}
       </a>
     </li>
   </ul>

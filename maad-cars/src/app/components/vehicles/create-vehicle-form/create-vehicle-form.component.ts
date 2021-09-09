@@ -6,9 +6,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./create-vehicle-form.component.css']
 })
 export class CreateVehicleFormComponent implements OnInit {
-  vin: string = '';
-  color: string = '';
-  description: string = '';
+  vin?: string;
+  color?: string;
+  description?: string;
   @Output() formEmitter = new EventEmitter<Object>();
 
   constructor() { }

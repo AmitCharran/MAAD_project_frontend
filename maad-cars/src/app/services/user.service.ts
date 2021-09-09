@@ -14,6 +14,7 @@ export class UserService {
 
 
   private usersApiUrl = "http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/users";
+  //private usersApiUrl = "http://localhost:8080/users";
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

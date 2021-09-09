@@ -7,11 +7,13 @@ import { SaleDetailComponent } from './components/sale-detail/sale-detail.compon
 import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { AllSalesComponent } from './components/all-sales/all-sales.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { VehicleDetailsComponent } from './components/vehicles/vehicle-details/vehicle-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
   { path: 'vehicles', component: VehicleListComponent },
   { path: 'vehicles/add-vehicle', component: CreateVehicleComponent },
+  { path: 'vehicles/detail/:id', component: VehicleDetailsComponent },
   { path: 'all-sales/detail/:sale_id', component: SaleDetailComponent },
   { path: 'my-sales', component: MySalesComponent },
   { path: 'all-sales', component: AllSalesComponent },

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
@@ -16,6 +17,7 @@ import { CreateVehicleComponent } from './components/vehicles/create-vehicle/cre
 import { CreateVehicleInputMakeComponent } from './components/vehicles/create-vehicle-input-make/create-vehicle-input-make.component';
 import { CreateVehicleInputModelComponent } from './components/vehicles/create-vehicle-input-model/create-vehicle-input-model.component';
 import { CreateVehicleFormComponent } from './components/vehicles/create-vehicle-form/create-vehicle-form.component';
+import { VehicleDetailsComponent } from './components/vehicles/vehicle-details/vehicle-details.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,15 @@ import { CreateVehicleFormComponent } from './components/vehicles/create-vehicle
     CreateVehicleInputModelComponent,
     CreateVehicleFormComponent,
     MySalesComponent,
-    BidsOnCarComponent
+    BidsOnCarComponent,
+    VehicleDetailsComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

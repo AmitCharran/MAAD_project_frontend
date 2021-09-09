@@ -12,6 +12,7 @@ import * as global from '../global';
 })
 export class VehicleService {
   private vehiclesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/vehicles';
+  //private vehiclesUrl = 'http://localhost:8080/vehicles';
   private vehicles: Vehicle[] = [];
   httpOptions = {
     headers: new HttpHeaders({
@@ -58,7 +59,8 @@ export class VehicleService {
   /** Insert a vehicle for current user
   POST /vehicles */
   createVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    return this.http.post<Vehicle>(this.vehiclesUrl, vehicle, this.httpOptions)
+    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
+    return this.http.post<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
             .pipe(
               tap((newVehicle: Vehicle) => this.log(`inserted Vehicle with id=${newVehicle.vehicle_id}`)),
               catchError(this.handleError<Vehicle>('createVehicle'))
@@ -68,7 +70,8 @@ export class VehicleService {
   /** Update a vehicle owned by current user
   PUT /vehicles */
   updateVehicle(vehicle: Vehicle): Observable<any> {
-    return this.http.post<Vehicle>(this.vehiclesUrl, vehicle, this.httpOptions)
+    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
+    return this.http.post<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
             .pipe(
               tap(_ => this.log(`updated Vehicle with id=${vehicle.vehicle_id}`)),
               catchError(this.handleError<Vehicle>('updateVehicle'))
@@ -78,6 +81,7 @@ export class VehicleService {
   /** Delete a vehicle owned by current user by vehicle ID
   DELETE /vehicles/{id} */
   deleteVehicle(vehicle_id: number): void {
+    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
     const url = `${this.vehiclesUrl}/${vehicle_id}`;
     this.http.delete<Vehicle>(url, this.httpOptions)
         .pipe(
@@ -89,6 +93,7 @@ export class VehicleService {
   /** Transfer a vehicle from current user to another user by ID
   PUT /vehicles/transfer/{vehicle_id}/to/{new_user_id} */
   transfer(vehicle: Vehicle, newUser: User): Observable<any> {
+    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
     const url = `${this.vehiclesUrl}/transfer/${vehicle.vehicle_id}/to/${newUser.user_id}`;
     return this.http.put<Vehicle>(url, this.httpOptions)
           .pipe(
@@ -106,6 +111,6 @@ export class VehicleService {
   }
 
   private log(message: string) {
-    // TODO: Add logging service
+    console.log(`VehicleService: ${message}`);
   }
 }
