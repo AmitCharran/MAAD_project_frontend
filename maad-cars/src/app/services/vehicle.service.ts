@@ -12,7 +12,7 @@ import * as global from '../global';
 })
 export class VehicleService {
   private vehiclesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/vehicles';
-  //private vehiclesUrl = 'http://localhost:8080/vehicles';
+  
   private vehicles: Vehicle[] = [];
   httpOptions = {
     headers: new HttpHeaders({
@@ -30,7 +30,7 @@ export class VehicleService {
       model_id : vehicle.model.model_id,
       vin : vehicle.vin,
       color : vehicle.color,
-      is_stolen : vehicle.is_stolen,
+      _stolen : vehicle._stolen,
       description : vehicle.description
     }
   }
@@ -72,7 +72,7 @@ export class VehicleService {
   PUT /vehicles */
   updateVehicle(vehicle: Vehicle): Observable<any> {
     this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
-    return this.http.post<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
+    return this.http.put<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
             .pipe(
               tap(_ => this.log(`updated Vehicle with id=${vehicle.vehicle_id}`)),
               catchError(this.handleError<Vehicle>('updateVehicle'))

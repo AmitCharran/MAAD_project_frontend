@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { delay } from 'rxjs/operators';
+import { SaleService } from 'src/app/services/sale.service';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -14,12 +15,15 @@ export class VehicleDetailsComponent implements OnInit {
   @Input() passedVehicle?: Vehicle;
   vehicle?: Vehicle;
   isOnDetailRoute: boolean = true;
+  id?: number;
+  isOnSale?: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private vehicleService: VehicleService
+    private vehicleService: VehicleService,
+    private saleService: SaleService
   ) { }
 
   async ngOnInit() {
@@ -28,13 +32,14 @@ export class VehicleDetailsComponent implements OnInit {
       this.vehicle = this.passedVehicle;
       this.isOnDetailRoute = false;
     } else {
+      this.id = Number(this.route.snapshot.paramMap.get('id'));
       this.getVehicle();
+      this.checkIfOnSale();
     }
   }
 
   getVehicle(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.vehicleService.findVehicleById(id)
+    this.vehicleService.findVehicleById(this.id!)
       .subscribe(vehicle => {
         if (this.passedVehicle) {
           this.vehicle = this.passedVehicle;
@@ -44,11 +49,47 @@ export class VehicleDetailsComponent implements OnInit {
       });
   }
 
+  checkIfOnSale() {
+    if (this.vehicle) {
+      this.isOnSale = false;
+      this.saleService.getSales()
+        .subscribe(sales => {
+          for (var sale of sales) {
+            if (sale.vehicle.vehicle_id === this.vehicle?.vehicle_id) {
+              this.isOnSale = true;
+            }
+          }
+        })
+    }
+  }
+
   goBack(): void {
     this.location.back();
   }
 
   backToMyVehicles(): void {
     this.router.navigateByUrl("/vehicles");
+  }
+
+  setStolen(flag: boolean) {
+    this.vehicle!._stolen = flag;
+    console.log(this.vehicle?._stolen);
+    console.log(this.vehicle);
+    this.vehicleService.updateVehicle(this.vehicle!)
+      .subscribe(vehicle => {
+        console.log(vehicle);
+        this.vehicle = vehicle;
+      });
+  }
+
+  putOnSale() {
+    const newSale = {
+      sale_id: 0,
+      vehicle: this.passedVehicle!,
+      time_started: "00:00:00"
+    }
+    console.log(newSale);
+    this.saleService.addSale(newSale)
+      .subscribe(sale => this.router.navigateByUrl(`/my-sales/bids/${sale.sale_id}`));
   }
 }
