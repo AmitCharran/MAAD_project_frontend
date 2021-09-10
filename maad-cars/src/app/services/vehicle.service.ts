@@ -11,8 +11,9 @@ import * as global from '../global';
   providedIn: 'root'
 })
 export class VehicleService {
-  private vehiclesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/vehicles';
-  
+  //private vehiclesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/vehicles';
+  private vehiclesUrl = `${global.backendUrl}/vehicles`;
+
   private vehicles: Vehicle[] = [];
   httpOptions = {
     headers: new HttpHeaders({

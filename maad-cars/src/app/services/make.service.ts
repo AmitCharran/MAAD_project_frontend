@@ -6,12 +6,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Make } from '../models/make';
 import { MessageService } from './message.service';
+import * as global from 'src/app/global';
 
 
 @Injectable({ providedIn: 'root' })
 export class MakeService {
 
-  private makesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/makes';  // URL to backend
+  //private makesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/makes';  // URL to backend
+  private makesUrl = `${global.backendUrl}/makes`;
+
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

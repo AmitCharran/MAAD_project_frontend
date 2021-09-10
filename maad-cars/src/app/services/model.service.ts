@@ -6,12 +6,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Model } from '../models/model';
 import { MessageService } from './message.service';
+import * as global from 'src/app/global';
 
 
 @Injectable({ providedIn: 'root' })
 export class ModelService {
 
-  private modelsUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/models';  // URL to backend
+  //private modelsUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/models';  // URL to backend
+  private modelsUrl = `${global.backendUrl}/models`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,7 +21,16 @@ export class ModelService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+  ) { }
+
+  convertToDto(model: Model) {
+    return {
+      model_id: model.model_id,
+      make_id: model.make.make_id,
+      name: model.name
+    }
+  }
 
   /** GET models from the server */
   getModels(): Observable<Model[]> {
@@ -71,9 +82,20 @@ export class ModelService {
 
   /** POST: add a new model to the server */
   addModel(model: Model): Observable<Model> {
-    return this.http.post<Model>(this.modelsUrl, model, this.httpOptions).pipe(
+    return this.http.post<Model>(this.modelsUrl, this.convertToDto(model), this.httpOptions).pipe(
       tap((newModel: Model) => this.log(`added model w/ id=${newModel.model_id}`)),
       catchError(this.handleError<Model>('addModel'))
+    );
+  }
+
+  addModels(models: Model[]): Observable<any> {
+    var dtos = [];
+    for (let model of models) {
+      dtos.push(this.convertToDto(model));
+    }
+    console.log(dtos[0]);
+    return this.http.post<Model>(`${this.modelsUrl}/multiple`,dtos, this.httpOptions).pipe(
+      catchError(this.handleError<Model>('addModels'))
     );
   }
 

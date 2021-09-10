@@ -6,12 +6,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Sale } from '../models/sale';
 import { MessageService } from './message.service';
+import * as global from '../global';
 
 
 @Injectable({ providedIn: 'root' })
 export class SaleService {
 
-  private salesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/sales';  // URL to backend
+  //private salesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/sales';  // URL to backend
+  private salesUrl = `${global.backendUrl}/sales`;
+
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
