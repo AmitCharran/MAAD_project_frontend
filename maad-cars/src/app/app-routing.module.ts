@@ -11,6 +11,7 @@ import { MySalesComponent } from './components/my-sales/my-sales.component';
 import { ListBidsOnCarsComponent } from './components/list-bids-on-cars/list-bids-on-cars.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { TransferVehicleComponent } from './components/transfer-vehicle/transfer-vehicle.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'user', component: UserDetailComponent },
   { path: 'my-sales/bids/:sale_id', component: ListBidsOnCarsComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'create-account', component: CreateAccountComponent}
+  { path: 'create-account', component: CreateAccountComponent},
+  { path: 'vehicles/detail/:id/transfer', component: TransferVehicleComponent}
 ];
 
 @NgModule({

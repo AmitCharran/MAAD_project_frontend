@@ -92,12 +92,12 @@ export class VehicleService {
 
   /** Transfer a vehicle from current user to another user by ID
   PUT /vehicles/transfer/{vehicle_id}/to/{new_user_id} */
-  transfer(vehicle: Vehicle, newUser: User): Observable<any> {
+  transfer(vehicle: Vehicle, newUserId: number): Observable<any> {
     this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
-    const url = `${this.vehiclesUrl}/transfer/${vehicle.vehicle_id}/to/${newUser.user_id}`;
-    return this.http.put<Vehicle>(url, this.httpOptions)
+    const url = `http://localhost:8080/vehicles/transfer/${vehicle.vehicle_id}/to/${newUserId}`;
+    return this.http.put<Vehicle>(url, null, this.httpOptions)
           .pipe(
-            tap(_ => this.log(`transfered Vehicle with id=${vehicle.vehicle_id} from user id=${global.current_user_id} to user id=${newUser.user_id}`)),
+            tap(_ => this.log(`transfered Vehicle with id=${vehicle.vehicle_id} from user id=${global.current_user_id} to user id=${newUserId}`)),
             catchError(this.handleError<Vehicle>('transfer'))
           );
   }
