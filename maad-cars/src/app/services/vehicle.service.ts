@@ -71,8 +71,9 @@ export class VehicleService {
   /** Update a vehicle owned by current user
   PUT /vehicles */
   updateVehicle(vehicle: Vehicle): Observable<any> {
-    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
-    return this.http.put<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
+    // this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
+     console.log(this.convertToDto(vehicle));
+    return this.http.put<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle)._stolen=false, this.httpOptions)
             .pipe(
               tap(_ => this.log(`updated Vehicle with id=${vehicle.vehicle_id}`)),
               catchError(this.handleError<Vehicle>('updateVehicle'))

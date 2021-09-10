@@ -1,0 +1,30 @@
+.each_element{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: black;
+    padding: 20px;
+    font-size: 100%;
+    margin-right: 60%;
+    margin-bottom: 5%;
+}
+
+.each_element:hover{
+    background-color: lightyellow;
+    color: gray;
+}
+.each_element:hover .accept_block{
+    display: block;
+}
+
+.accept_block{
+    background-color: white;
+    color:black;
+    display: none;
+    border-color:red;
+    border-style: solid;
+}
+
+.bids a{
+    color: #000000;
+    text-decoration: none;
+}

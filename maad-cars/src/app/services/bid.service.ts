@@ -8,6 +8,7 @@ import { MessageService } from './message.service';
 import { Bid } from '../models/bid';
 import { current_user_id } from '../global';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -98,6 +99,19 @@ export class BidService {
       tap(_ => this.log(`updated bid id=${bid.bid_id}`)),
       catchError(this.handleError<any>('updateBid'))
     );
+  }
+
+  /**DELETE:  */
+  finalizeBid(bid_id: number){
+    const url = `${this.bidsUrl}/${bid_id}`;
+    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${current_user_id}`);
+    console.log(this.httpOptions.headers);
+    console.log(url);
+    console.log(bid_id);
+    return this.http.delete<Bid>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Bid>('deleteBid'))
+    );
+
   }
 
 

@@ -9,7 +9,7 @@ import { current_user_id } from 'src/app/global';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
-
+  current_user : number = current_user_id;
   constructor(private router : Router) { }
 
   ngOnInit(): void {
