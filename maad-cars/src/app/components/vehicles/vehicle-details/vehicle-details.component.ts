@@ -3,8 +3,11 @@ import { Vehicle } from 'src/app/models/vehicle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { VehicleService } from 'src/app/services/vehicle.service';
-import { delay } from 'rxjs/operators';
+import { delay, subscribeOn } from 'rxjs/operators';
 import { SaleService } from 'src/app/services/sale.service';
+import { BidService } from 'src/app/services/bid.service';
+import { Sale } from '../../../models/sale';
+import { Bid } from '../../../models/bid';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -23,7 +26,8 @@ export class VehicleDetailsComponent implements OnInit {
     private router: Router,
     private location: Location,
     private vehicleService: VehicleService,
-    private saleService: SaleService
+    private saleService: SaleService,
+    private bidService: BidService
   ) { }
 
   async ngOnInit() {
@@ -92,4 +96,56 @@ export class VehicleDetailsComponent implements OnInit {
     this.saleService.addSale(newSale)
       .subscribe(sale => this.router.navigateByUrl(`/my-sales/bids/${sale.sale_id}`));
   }
+
+  async deleteVehicle() {
+    var sale: Sale;
+    var bidPromises: Promise<any>[] = [];
+    var salePromise: Promise<any>;
+    this.saleService.getSales()
+      .subscribe(sales => {
+        for (var s of sales) {
+          if (s.vehicle.vehicle_id === this.vehicle?.vehicle_id) {
+            sale = s;
+            break;
+          }
+        }
+        if (sale) {
+          this.bidService.getBids()
+            .subscribe(bids => {
+              for (var b of bids) {
+                if (b.sale.sale_id === sale.sale_id) {
+                  bidPromises.push(
+                    this.bidService.deleteBid(b.bid_id)
+                      .toPromise()
+                  );
+                }
+              }
+              salePromise = this.finishDeleteSale(bidPromises, sale);
+            });
+            this.finishDeleteVehicle(salePromise, this.vehicle!);
+        } else {
+          
+        }
+      });
+      
+  }
+
+  async finishDeleteSale(promises: Promise<any>[], sale: Sale) {
+    await Promise.all(promises).then(any => {
+      this.saleService.deleteSale(sale.sale_id)
+        .subscribe();
+    });
+  }
+
+  async finishDeleteVehicle(promise: Promise<any>, vehicle: Vehicle) {
+    await promise.then(any => {
+      this.vehicleService.deleteVehicle(vehicle.vehicle_id)
+        .subscribe();
+    })
+  }
+
+  callServiceDelete(vehicle: Vehicle) {
+
+  }
+
 }
