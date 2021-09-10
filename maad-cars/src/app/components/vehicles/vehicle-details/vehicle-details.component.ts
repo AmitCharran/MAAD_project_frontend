@@ -126,7 +126,6 @@ export class VehicleDetailsComponent implements OnInit {
           this.callDeleteVehicle(this.vehicle!);
         }
       });
-      
   }
 
   async finishDeleteSale(promises: Promise<any>[], sale: Sale) {
@@ -144,7 +143,8 @@ export class VehicleDetailsComponent implements OnInit {
 
   callDeleteVehicle(vehicle: Vehicle) {
     this.vehicleService.deleteVehicle(vehicle.vehicle_id)
-        .subscribe();
+        .subscribe(any => {this.router.navigateByUrl('/vehicles');
+      });
   }
 
 }

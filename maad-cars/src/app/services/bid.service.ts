@@ -7,14 +7,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Bid } from '../models/bid';
 import { current_user_id } from '../global';
-
+import * as global from '../global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BidService {
 
-  private bidsUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/bids';
+  //private bidsUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/bids';
+  private bidsUrl = `${global.backendUrl}/bids`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
       'user_id': `${current_user_id}` })

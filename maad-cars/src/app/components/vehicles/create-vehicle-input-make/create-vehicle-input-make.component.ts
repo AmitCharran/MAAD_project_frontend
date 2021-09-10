@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MakeService } from '../../../services/make.service';
 import { Make } from '../../../models/make';
+import { Model } from 'src/app/models/model';
+import { CachingService } from 'src/app/services/caching.service';
+import { ModelService } from 'src/app/services/model.service';
 
 @Component({
   selector: 'app-create-vehicle-input-make',
@@ -23,31 +26,51 @@ export class CreateVehicleInputMakeComponent implements OnInit {
   };
   failedToFind: boolean = false;
   makes: Make[] = [];
+  apiMakes: Make[] = [];
 
   constructor(
-    private makeService: MakeService
+    private makeService: MakeService,
+    private cachingService: CachingService,
+    private modelService: ModelService
   ) { }
 
   ngOnInit(): void {
-     this.makeService.getMakes()
-      .subscribe((makes) => this.makes = makes);
+  }
 
+  async getMakesFromDatabase() {
+    return this.makeService.getMakes()
+    .toPromise();
   }
 
   async findMake(): Promise<void> {
-    await this.ngOnInit();
-    if (this.inputMake.name) {
-      this.foundMake = this.makes.find((make: Make) => {
-        return make?.name?.toLowerCase() === this.inputMake?.name?.toLowerCase();
-      });
+    this.inputMake.name = this.inputMake.name.toUpperCase();
+    this.makes = await this.getMakesFromDatabase();
+    for (let make of this.makes) {
+      if (make.name === this.inputMake.name) {
+        this.foundMake = make;
+        this.returnMake(this.foundMake);
+        return;
+      }
     }
-    if (!this.foundMake) {
-      this.failedToFind = true;
-    } else {
-      this.failedToFind = false;
-      console.log(this.foundMake);
-      this.returnMake(this.foundMake);
+    this.apiMakes = await this.getMakesFromApi();
+    for (let make of this.apiMakes) {
+      if (make.name === this.inputMake.name) {
+        this.foundMake = await this.insertNewfoundMake(make);
+        this.returnMake(this.foundMake);
+        return;
+      }
     }
+  }
+
+  async getMakesFromApi() {
+    return this.cachingService.getApiAllMakes();
+  }
+
+  async insertNewfoundMake(make: Make) {
+    var insertedMake = await this.makeService.addMake(make).toPromise();
+    var newModels: Model[] = await this.cachingService.getApiAllModelsByMake(make.make_id, insertedMake);
+    await this.modelService.addModels(newModels).toPromise();
+    return insertedMake;
   }
 
   returnMake(value: Make) {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as global from '../global';
 
 import { User } from '../models/user';
 
@@ -13,8 +14,8 @@ export class UserService {
   constructor(private http : HttpClient) { }
 
 
-  private usersApiUrl = "http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/users";
-  //private usersApiUrl = "http://localhost:8080/users";
+  //private usersApiUrl = "http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/users";
+  private usersApiUrl = `${global.backendUrl}/users`;
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
