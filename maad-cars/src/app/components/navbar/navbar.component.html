@@ -1,9 +1,9 @@
 <nav>
-    <div *ngIf="!isLoggedIn">
+    <div *ngIf="current_user === 0">
       <a routerLink="/create-account">Create New Account</a>
       <a routerLink="/login">Login</a>
-    </div>
-    <div *ngIf="isLoggedIn">
+    </div> 
+     <div *ngIf="current_user !== 0">
       <a routerLink="/vehicles">My Vehicles</a>
       <a routerLink="/my-sales">My Sales</a>
       <a routerLink="/all-sales">All Sales</a>
