@@ -9,8 +9,8 @@
 }
 
 .each_element:hover{
-    background-color: lightyellow;
-    color: gray;
+    background-color: lightgray;
+    color: black;
 }
 .each_element:hover .accept_block{
     display: block;
@@ -20,7 +20,7 @@
     background-color: white;
     color:black;
     display: none;
-    border-color:red;
+    border-color:black;
     border-style: solid;
 }
 
