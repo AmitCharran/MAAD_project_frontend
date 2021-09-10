@@ -19,7 +19,17 @@ export class SaleService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+  ) { }
+
+  convertToDto(sale: Sale) {
+    return {
+      sale_id: sale.sale_id,
+      vehicle_id: sale.vehicle.vehicle_id,
+      time_started: sale.time_started
+    }
+  }
+  
 
   /** GET sales from the server */
   getSales(): Observable<Sale[]> {
@@ -71,7 +81,7 @@ export class SaleService {
 
   /** POST: add a new sale to the server */
   addSale(sale: Sale): Observable<Sale> {
-    return this.http.post<Sale>(this.salesUrl, sale, this.httpOptions).pipe(
+    return this.http.post<Sale>(this.salesUrl, this.convertToDto(sale), this.httpOptions).pipe(
       tap((newSale: Sale) => this.log(`added sale w/ id=${newSale.sale_id}`)),
       catchError(this.handleError<Sale>('addSale'))
     );
@@ -89,7 +99,7 @@ export class SaleService {
 
   /** PUT: update the sale on the server */
   updateSale(sale: Sale): Observable<any> {
-    return this.http.put(this.salesUrl, sale, this.httpOptions).pipe(
+    return this.http.put(this.salesUrl, this.convertToDto(sale), this.httpOptions).pipe(
       tap(_ => this.log(`updated sale id=${sale.sale_id}`)),
       catchError(this.handleError<any>('updateSale'))
     );

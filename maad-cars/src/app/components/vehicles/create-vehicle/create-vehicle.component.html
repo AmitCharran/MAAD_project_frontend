@@ -4,7 +4,7 @@
 <ng-template #elseBlock>
   <app-create-vehicle-input-model *ngIf="!model && make; else elseBlock" (modelEmitter)="model=$event" [make]="make"></app-create-vehicle-input-model>
   <ng-template #elseBlock>
-    <app-create-vehicle-form *ngIf="!vin || !color || !description; else elseBlock" (formEmitter)="unpackForm($event)"></app-create-vehicle-form>
+    <app-create-vehicle-form *ngIf="!vin || !color; else elseBlock" (formEmitter)="unpackForm($event)"></app-create-vehicle-form>
     <ng-template #elseBlock>
       <app-vehicle-details [passedVehicle]="vehicle"></app-vehicle-details>
       <button (click)="addVehicle()">Finalize New Vehicle</button>

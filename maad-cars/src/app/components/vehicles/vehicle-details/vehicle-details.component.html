@@ -5,11 +5,20 @@
     <div><span>Model: </span>{{vehicle.model.name}}</div>
     <div><span>Color: </span>{{vehicle.color}}</div>
     <div><span>Description: </span>{{vehicle.description}}</div>
+    <div><span>Reported stolen: </span>{{vehicle._stolen?"Yes":"No"}}</div>
+    <div *ngIf="!vehicle._stolen">
+        <span>Sale status: </span>
+        <a *ngIf="isOnSale; else elseBlock" routerLink="/my-sales">Ongoing</a>
+        <ng-template #elseBlock><span>Not on sale</span></ng-template>
+    </div>
     <div>
         <span *ngIf="isOnDetailRoute">
             <button routerLink="edit">Edit</button>
-            <button (click)="goBack()">Go back</button>
+            <button *ngIf="!vehicle._stolen" (click)="setStolen(true)">Report Stolen</button>
+            <button *ngIf="vehicle._stolen" (click)="setStolen(false)">Report Vehicle Recovered</button>
+            <button *ngIf="!vehicle._stolen && !isOnSale" (click)="putOnSale()">Place this vehicle on sale</button>
         </span>
+        <button (click)="goBack()">Go back</button>
         <button *ngIf="!isOnDetailRoute" 
             (click)="backToMyVehicles()">Return to My Vehicles</button>
     </div>
