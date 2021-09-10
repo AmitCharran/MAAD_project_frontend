@@ -82,10 +82,10 @@ export class VehicleService {
 
   /** Delete a vehicle owned by current user by vehicle ID
   DELETE /vehicles/{id} */
-  deleteVehicle(vehicle_id: number): void {
+  deleteVehicle(vehicle_id: number): Observable<any> {
     this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
     const url = `${this.vehiclesUrl}/${vehicle_id}`;
-    this.http.delete<Vehicle>(url, this.httpOptions)
+    return this.http.delete<Vehicle>(url, this.httpOptions)
         .pipe(
           tap(_ => this.log(`deleted Vehicle with id=${vehicle_id}`)),
           catchError(this.handleError<Vehicle>('deleteVehicle'))
