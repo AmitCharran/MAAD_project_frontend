@@ -49,7 +49,7 @@ export class UserService {
    * @returns an Observable of the User
    */
   getUserByUsername(username : String) : Observable<User>{
-    const url = `${this.usersApiUrl}/${username}`;
+    const url = `${this.usersApiUrl}/username/${username}`;
     return this.http.get<User>(url).pipe(
       catchError(this.handleError<User>(`getUserByUsername username=${username}`))
     );

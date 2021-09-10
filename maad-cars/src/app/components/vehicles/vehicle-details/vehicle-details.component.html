@@ -15,10 +15,12 @@
     <div>
         <span *ngIf="isOnDetailRoute">
             <button routerLink="edit">Edit</button>
+            <button routerLink="transfer">Transfer</button> 
             <button *ngIf="!vehicle._stolen" (click)="setStolen(true)">Report Stolen</button>
             <button *ngIf="vehicle._stolen" (click)="setStolen(false)">Report Vehicle Recovered</button>
             <button *ngIf="!vehicle._stolen && !isOnSale" (click)="putOnSale()">Place this vehicle on sale</button>
             <button *ngIf="!isOnSale" (click)="deleteVehicle()">Remove</button>
+            <button (click)="goBack()">Go back</button>
         </span>
         <button (click)="goBack()">Go back</button>
         <button *ngIf="!isOnDetailRoute" 
