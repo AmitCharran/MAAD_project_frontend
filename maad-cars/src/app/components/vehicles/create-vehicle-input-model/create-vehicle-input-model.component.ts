@@ -5,7 +5,7 @@ import { Model } from '../../../models/model';
 
 @Component({
   selector: 'app-create-vehicle-input-model',
-  template: `<app-navbar></app-navbar>
+  template: `
   <h3>Find your vehicle's model below:</h3>
 
   <div>
