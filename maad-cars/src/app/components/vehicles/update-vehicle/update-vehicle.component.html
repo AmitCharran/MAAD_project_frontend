@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+<div *ngIf="vehicle">
+    <h2>Update Vehicle Details</h2>
+
+    <form #updateVehicleDetailsForm="ngForm">
+        <div>
+            <div><span>VIN: </span>{{vehicle.vin}}</div>
+            <div><span>Make: </span>{{vehicle.model.make.name}}</div>
+            <div><span>Model: </span>{{vehicle.model.name}}</div>
+            <div>
+              <div>
+                <label for="color">Color: </label>
+                <input id="color" type="text" class="form-control" name="color" minlength="2" maxlength="20" required [(ngModel)]="color" #colorControl="ngModel">
+              </div>
+              <div *ngIf="colorControl.invalid && (colorControl.dirty || colorControl.touched)">
+                <div *ngIf="colorControl.errors?.required">
+                  Color is required.
+                </div>
+                <div *ngIf="colorControl.errors?.minlength">
+                  Invalid color.
+                </div>
+              </div>
+              <div>
+                <label for="description">Description: </label>
+                <input id="description" type="text" class="form-control" name="description" [(ngModel)]="description">
+              </div>
+            </div>
+        </div>
+        <button (click)="submitUpdate()">Save Edit</button>
+    </form>
+    <div>
+        <button (click)="goBack()">Go back</button>
+        <button routerLink="/vehicles">Return to My Vehicles</button>
+    </div>
+</div>

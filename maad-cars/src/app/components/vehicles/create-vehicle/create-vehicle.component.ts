@@ -42,7 +42,7 @@ export class CreateVehicleComponent implements OnInit {
       vin : this.vin!,
       color : this.color!,
       description : this.description!,
-      is_stolen : false
+      _stolen : false
     }
   }
 

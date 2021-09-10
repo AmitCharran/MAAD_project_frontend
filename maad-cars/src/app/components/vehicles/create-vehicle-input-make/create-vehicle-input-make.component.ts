@@ -4,7 +4,8 @@ import { Make } from '../../../models/make';
 
 @Component({
   selector: 'app-create-vehicle-input-make',
-  template: `<div>
+  template: `
+              <div>
                 <h3>Search for Make:</h3>
                 <input id="makeName" type="text" [(ngModel)]="inputMake.name">
                 <button (click)="findMake()">Search</button>

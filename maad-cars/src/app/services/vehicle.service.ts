@@ -12,7 +12,7 @@ import * as global from '../global';
 })
 export class VehicleService {
   private vehiclesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/vehicles';
-  //private vehiclesUrl = 'http://localhost:8080/vehicles';
+  
   private vehicles: Vehicle[] = [];
   httpOptions = {
     headers: new HttpHeaders({
@@ -30,7 +30,7 @@ export class VehicleService {
       model_id : vehicle.model.model_id,
       vin : vehicle.vin,
       color : vehicle.color,
-      is_stolen : vehicle.is_stolen,
+      _stolen : vehicle._stolen,
       description : vehicle.description
     }
   }
@@ -60,6 +60,7 @@ export class VehicleService {
   POST /vehicles */
   createVehicle(vehicle: Vehicle): Observable<Vehicle> {
     this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
+    console.log(this.httpOptions.headers);
     return this.http.post<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
             .pipe(
               tap((newVehicle: Vehicle) => this.log(`inserted Vehicle with id=${newVehicle.vehicle_id}`)),
@@ -70,8 +71,9 @@ export class VehicleService {
   /** Update a vehicle owned by current user
   PUT /vehicles */
   updateVehicle(vehicle: Vehicle): Observable<any> {
-    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
-    return this.http.post<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
+    // this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
+     console.log(this.convertToDto(vehicle));
+    return this.http.put<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle)._stolen=false, this.httpOptions)
             .pipe(
               tap(_ => this.log(`updated Vehicle with id=${vehicle.vehicle_id}`)),
               catchError(this.handleError<Vehicle>('updateVehicle'))
@@ -80,10 +82,10 @@ export class VehicleService {
 
   /** Delete a vehicle owned by current user by vehicle ID
   DELETE /vehicles/{id} */
-  deleteVehicle(vehicle_id: number): void {
+  deleteVehicle(vehicle_id: number): Observable<any> {
     this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
     const url = `${this.vehiclesUrl}/${vehicle_id}`;
-    this.http.delete<Vehicle>(url, this.httpOptions)
+    return this.http.delete<Vehicle>(url, this.httpOptions)
         .pipe(
           tap(_ => this.log(`deleted Vehicle with id=${vehicle_id}`)),
           catchError(this.handleError<Vehicle>('deleteVehicle'))

@@ -23,6 +23,8 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TransferVehicleComponent } from './components/transfer-vehicle/transfer-vehicle.component';
+import { DisplayAcceptedBidComponent } from './components/display-accepted-bid/display-accepted-bid.component';
+import { UpdateVehicleComponent } from './components/vehicles/update-vehicle/update-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { TransferVehicleComponent } from './components/transfer-vehicle/transfer
     LoginComponent,
     CreateAccountComponent,
     NavbarComponent,
-    TransferVehicleComponent
+    TransferVehicleComponent,
+    DisplayAcceptedBidComponent,
+    UpdateVehicleComponent
   ],
   imports: [
     HttpClientModule,

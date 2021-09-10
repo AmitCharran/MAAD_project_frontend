@@ -5,7 +5,8 @@ import { Model } from '../../../models/model';
 
 @Component({
   selector: 'app-create-vehicle-input-model',
-  template: `<h3>Find your vehicle's model below:</h3>
+  template: `
+  <h3>Find your vehicle's model below:</h3>
 
   <div>
       <form #modelForm="ngForm">

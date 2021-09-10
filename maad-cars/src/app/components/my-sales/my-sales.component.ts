@@ -10,16 +10,20 @@ import { current_user_id } from 'src/app/global';
   styleUrls: ['./my-sales.component.css']
 })
 export class MySalesComponent implements OnInit {
+
   vehicles: Vehicle[] = [];
   sales: Sale[] = [];
   myVehiclesOnSale: Vehicle[] = [];
+
   constructor(
     private vehicleService: VehicleService,
     private saleService: SaleService) { }
+
   ngOnInit(): void {
     this.getVehicle()
     this.getSales()
   }
+
   getVehicle(){
     this.vehicleService.getAllVehicles()
     .subscribe((vehicles: Vehicle[]) => {
@@ -28,6 +32,7 @@ export class MySalesComponent implements OnInit {
     });
     
   };
+  
   getSales(){
     this.saleService.getSales()
     .subscribe((sales: Sale[]) => {

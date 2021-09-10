@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Vehicle } from '../../../models/vehicle';
 import { VehicleService } from '../../../services/vehicle.service';
 import * as global from '../../../global';
+import { current_user_id } from '../../../global';
 
 @Component({
   selector: 'app-vehicle-list',
