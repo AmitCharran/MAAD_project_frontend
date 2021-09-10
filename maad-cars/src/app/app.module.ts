@@ -22,6 +22,7 @@ import { ListBidsOnCarsComponent } from './components/list-bids-on-cars/list-bid
 import { LoginComponent } from './components/login/login.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DisplayAcceptedBidComponent } from './components/display-accepted-bid/display-accepted-bid.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ListBidsOnCarsComponent,
     LoginComponent,
     CreateAccountComponent,
-    NavbarComponent
+    NavbarComponent,
+    DisplayAcceptedBidComponent
   ],
   imports: [
     HttpClientModule,

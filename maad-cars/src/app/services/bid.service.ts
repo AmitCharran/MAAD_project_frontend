@@ -8,6 +8,7 @@ import { MessageService } from './message.service';
 import { Bid } from '../models/bid';
 import { current_user_id } from '../global';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -83,8 +84,8 @@ export class BidService {
     var bidDTO = {
       bid_id: bid.bid_id,
       bid: bid.bid,
-      sale_id: bid.sale.sale_id,
-      user_id: bid.user.user_id
+      sale: bid.sale.sale_id,
+      user: bid.user.user_id
     }
       return this.http.post<Bid>(this.bidsUrl, bidDTO, this.httpOptions).pipe(
         tap((newBid: Bid) => this.log(`added bid w/ id=${newBid.bid_id}`)),
@@ -98,6 +99,19 @@ export class BidService {
       tap(_ => this.log(`updated bid id=${bid.bid_id}`)),
       catchError(this.handleError<any>('updateBid'))
     );
+  }
+
+  /**DELETE:  */
+  finalizeBid(bid_id: number){
+    const url = `${this.bidsUrl}/${bid_id}`;
+    this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${current_user_id}`);
+    console.log(this.httpOptions.headers);
+    console.log(url);
+    console.log(bid_id);
+    return this.http.delete<Bid>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Bid>('deleteBid'))
+    );
+
   }
 
 

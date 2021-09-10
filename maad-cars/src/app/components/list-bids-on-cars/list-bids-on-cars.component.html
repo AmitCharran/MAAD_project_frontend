@@ -1,9 +1,14 @@
 <h2>Current Bids on your car</h2>
 <ul class='bids'>
     <li *ngFor="let bid of bids">
-       <span>Bid id: {{bid.bid_id}}</span>
-       <p>User: {{bid.user.username}}</p>
-       <p>Bid Amount: ${{bid.bid}}</p>
+        <a  routerLink='/bids/accepted-bid/{{bid.bid_id}}'>
+             <div class="each_element" (click)="finalizeBid(bid.bid_id)">
+                <span>Bid id: {{bid.bid_id}}</span>
+                <p>User: {{bid.user.username}}</p>
+                <p>Bid Amount: ${{bid.bid}}</p>
+                <p class="accept_block"><strong>Click to Accept Bid of ${{bid.bid}}</strong></p>
+             </div>
+        </a>
     </li>
 </ul>
 
