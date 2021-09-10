@@ -83,8 +83,8 @@ export class BidService {
     var bidDTO = {
       bid_id: bid.bid_id,
       bid: bid.bid,
-      sale_id: bid.sale.sale_id,
-      user_id: bid.user.user_id
+      sale: bid.sale.sale_id,
+      user: bid.user.user_id
     }
       return this.http.post<Bid>(this.bidsUrl, bidDTO, this.httpOptions).pipe(
         tap((newBid: Bid) => this.log(`added bid w/ id=${newBid.bid_id}`)),
