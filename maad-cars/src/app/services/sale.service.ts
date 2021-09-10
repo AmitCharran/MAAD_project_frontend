@@ -11,8 +11,7 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class SaleService {
 
-  //private salesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/sales';  // URL to backend
-  private salesUrl = 'http://localhost:8080/sales';
+  private salesUrl = 'http://maad4-env.eba-g6ebnqmt.us-east-1.elasticbeanstalk.com/sales';  // URL to backend
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
