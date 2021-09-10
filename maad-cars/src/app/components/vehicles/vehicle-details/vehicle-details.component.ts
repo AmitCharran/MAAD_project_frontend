@@ -3,11 +3,10 @@ import { Vehicle } from 'src/app/models/vehicle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { VehicleService } from 'src/app/services/vehicle.service';
-import { delay, subscribeOn } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 import { SaleService } from 'src/app/services/sale.service';
 import { BidService } from 'src/app/services/bid.service';
 import { Sale } from '../../../models/sale';
-import { Bid } from '../../../models/bid';
 
 @Component({
   selector: 'app-vehicle-details',
