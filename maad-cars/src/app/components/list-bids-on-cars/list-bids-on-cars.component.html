@@ -1,16 +1,15 @@
 <app-navbar></app-navbar>
 <h2>Current Bids on your car</h2>
 <ul class='bids'>
-    <li *ngFor="let bid of bids">
-        <a  routerLink='/bids/accepted-bid/{{bid.bid_id}}'>
-             <div class="each_element" (click)="finalizeBid(bid.bid_id)">
+        <li *ngFor="let bid of bids">
+             <div class="each_element" (click)="acceptBid(bid.bid_id)">
                 <span>Bid id: {{bid.bid_id}}</span>
                 <p>User: {{bid.user.username}}</p>
                 <p>Bid Amount: ${{bid.bid}}</p>
-                <p class="accept_block"><strong>Click to Accept Bid of ${{bid.bid}}</strong></p>
+                <p class="accept_block"><strong>Contact {{bid.user.username}} at {{bid.user.email}}</strong></p>
+                <p class="accept_block"><strong>Their name is {{bid.user.firstName}} {{bid.user.lastName}}</strong></p>
              </div>
-        </a>
-    </li>
+        </li>
 </ul>
 
 <button (click)="goBack()">View Cars Again</button>
