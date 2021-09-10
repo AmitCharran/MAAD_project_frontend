@@ -30,7 +30,7 @@ export class VehicleService {
       model_id : vehicle.model.model_id,
       vin : vehicle.vin,
       color : vehicle.color,
-      is_stolen : vehicle.is_stolen,
+      _stolen : vehicle._stolen,
       description : vehicle.description
     }
   }
@@ -72,7 +72,8 @@ export class VehicleService {
   PUT /vehicles */
   updateVehicle(vehicle: Vehicle): Observable<any> {
     this.httpOptions.headers = this.httpOptions.headers.set('user_id',`${global.current_user_id}`);
-    return this.http.post<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle), this.httpOptions)
+    console.log(this.convertToDto(vehicle));
+    return this.http.put<Vehicle>(this.vehiclesUrl, this.convertToDto(vehicle)._stolen=false, this.httpOptions)
             .pipe(
               tap(_ => this.log(`updated Vehicle with id=${vehicle.vehicle_id}`)),
               catchError(this.handleError<Vehicle>('updateVehicle'))

@@ -7,6 +7,6 @@ export interface Vehicle {
   model: Model;
   vin: string;
   color: string;
-  is_stolen: boolean;
+  _stolen: boolean;
   description: string;
 }

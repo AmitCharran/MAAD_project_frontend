@@ -61,8 +61,11 @@ export class ListBidsOnCarsComponent implements OnInit {
 
         // update vehicle class
         this.vehicle.user = this.buyer;
+        console.log(this.vehicle);
         
-        this.vehicleService.updateVehicle(this.vehicle).subscribe();
+        this.vehicleService
+        .updateVehicle(this.vehicle)
+        .subscribe();
         // delete sale
 
     });
