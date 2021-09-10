@@ -24,6 +24,9 @@ export class ListBidsOnCarsComponent implements OnInit {
   sale: Sale | undefined;
   current_user: User | undefined;
   buyer: User | undefined;
+  bid_accepted: boolean = false;
+  bid_number_accepted: number | undefined;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -49,28 +52,9 @@ export class ListBidsOnCarsComponent implements OnInit {
     this.location.back();
   }
 
-  finalizeBid(bid_id: number){
-    this.bidService.getBid(bid_id)
-    .subscribe((bid:Bid)=>{
-        this.bid = bid;
-        console.log(bid);
-        this.sale = bid.sale;
-        this.vehicle = bid.sale.vehicle;
-        this.buyer = bid.user;
-        this.current_user = bid.sale.vehicle.user;
-
-        // update vehicle class
-        this.vehicle.user = this.buyer;
-        console.log(this.vehicle);
-        
-        this.vehicleService
-        .updateVehicle(this.vehicle)
-        .subscribe();
-        // delete sale
-
-    });
-    //update user 
-    // delete sale 
+  acceptBid(bid_id: number){
+    this.bid_number_accepted = bid_id;
+    this.bid_accepted = true;
   }
 
 }
